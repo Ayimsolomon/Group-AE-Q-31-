@@ -116,6 +116,14 @@ footer {
     height: 300px; 
     object-fit: cover; /* Crops the image to fill the area instead of stretching it */
 }
+
+        .container img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Removes the small gap at the bottom of images */
+    margin: 0 auto; /* Centers the image if it's smaller than the container */
+    border-radius: 12px; /* Optional: matches your card styling */
+}
     </style>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -315,6 +323,7 @@ footer {
 </body>
 
 </html>
+
 
 
 
