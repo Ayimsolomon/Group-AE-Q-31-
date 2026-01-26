@@ -61,6 +61,55 @@
         table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
         td { padding: 10px 0; border-bottom: 1px solid #eee; }
         .total { font-weight: 800; font-size: 1.2rem; color: var(--accent); }
+
+        /* Responsive adjustments */
+@media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; } /* Stack inputs on mobile */
+    nav { padding: 1rem; }
+    .logo { font-size: 0.9rem; }
+    .card { padding: 1.5rem; margin: 1rem; }
+}
+
+/* Footer Styling */
+footer {
+    background: var(--primary);
+    color: var(--white);
+    padding: 3rem 1rem 1.5rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h4 {
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.footer-section p, .footer-section a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    max-width: 900px;
+    margin: 2rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid #333;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+}
     </style>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -173,7 +222,28 @@
         <button class="btn btn-secondary" onclick="location.reload()">New Booking</button>
     </div>
 </div>
-
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>About Group AE</h4>
+            <p>Providing seamless digital reservation experiences for modern travelers since 2024.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <p><a href="#">Support Center</a></p>
+            <p><a href="#">Privacy Policy</a></p>
+            <p><a href="#">Terms of Service</a></p>
+        </div>
+        <div class="footer-section">
+            <h4>Contact</h4>
+            <p><i class="fas fa-envelope"></i> help@group-ae.com</p>
+            <p><i class="fas fa-phone"></i> +1 (555) 000-1234</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Group AE Q(31) Smart Reservation Portal. All rights reserved.
+    </div>
+</footer>
 <script>
     let bookingData = {
         roomType: '',
@@ -239,5 +309,6 @@
 </body>
 
 </html>
+
 
 
