@@ -171,7 +171,7 @@ footer {
                 <div class="room-img" style="background: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=300&q=80') center/cover;"></div>
                 <div class="room-info">
                     <strong>Deluxe Suite</strong><br>
-                    <small>$450 / night</small>
+                    <small>#450 / night</small>
                 </div>
             </div>
         </div>
@@ -198,28 +198,28 @@ footer {
         </div>
         <div style="background: #fdfaf5; padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid var(--accent);">
             <strong>Summary:</strong> <span id="summary-text">Superior King x 2 Nights</span>
-            <div class="total" id="summary-price">$450.00</div>
+            <div class="total" id="summary-price">#450.00</div>
         </div>
         <button class="btn" onclick="processBooking()">Confirm Reservation</button>
     </div>
 
-    <div id="view-success" class="card" style="text-align: center;">
-        <div style="font-size: 3rem;">✨</div>
-        <h2>Reservation Confirmed!</h2>
-        <p>Your Booking ID is: <strong id="res-id">LS-9921</strong></p>
-        <p>Check-in is available now via your mobile device.</p>
-        <button class="btn" onclick="startCheckIn()">Start Digital Check-In</button>
-    </div>
+   <div id="view-success" class="card" style="text-align: center;">
+    <div style="font-size: 3rem;">✨</div>
+    <h2>Reservation Confirmed!</h2>
+    <p>Your Booking ID is: <strong id="res-id">Generating...</strong></p>
+    <p>Check-in is available now via your mobile device.</p>
+    <button class="btn" onclick="startCheckIn()">Start Digital Check-In</button>
+</div>
 
     <div id="view-portal" class="card">
-        <h2>Welcome to Room 402</h2>
-        <p>You are currently checked in. Use the buttons below to manage your stay.</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <button class="btn btn-secondary">Order Service</button>
-            <button class="btn btn-secondary">Digital Key</button>
-        </div>
-        <button class="btn" style="margin-top: 1.5rem;" onclick="showCheckout()">Proceed to Check-Out</button>
+    <h2>Welcome to Room <span id="room-display">...</span></h2>
+    <p>You are currently checked in. Use the buttons below to manage your stay.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <button class="btn btn-secondary">Order Service</button>
+        <button class="btn btn-secondary">Digital Key</button>
     </div>
+    <button class="btn" style="margin-top: 1.5rem;" onclick="showCheckout()">Proceed to Check-Out</button>
+</div>
 
     <div id="view-checkout" class="card">
         <h2>Final Folio</h2>
@@ -300,7 +300,18 @@ footer {
             showView('view-success', 2);
         }, 1500);
     }
+// Function to generate and display a random room number
+function assignRandomRoom() {
+    const min = 100;
+    const max = 999;
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    
+    // Update the HTML element
+    document.getElementById('room-display').innerText = randomNumber;
+}
 
+// Call the function when the page finished loading
+window.onload = assignRandomRoom;
     function startCheckIn() {
         showView('view-portal', 3);
     }
@@ -309,7 +320,7 @@ footer {
         const billBody = document.getElementById('bill-items');
         billBody.innerHTML = `
             <tr><td>${bookingData.roomType} (Stay)</td><td>$${bookingData.total.toFixed(2)}</td></tr>
-            <tr><td>Amenities Tax</td><td>$12.50</td></tr>
+            <tr><td>Amenities Tax</td><td>#12.50</td></tr>
             <tr class="total"><td>Total Amount</td><td>$${(bookingData.total + 12.50).toFixed(2)}</td></tr>
         `;
         showView('view-checkout', 4);
@@ -318,11 +329,37 @@ footer {
     function finishEverything() {
         showView('view-end', 4);
     }
+
+    function generateBookingID() {
+    const characters = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789'; // Excluded 'O' and '0' for clarity
+    let result = 'LS-';
+    for (let i = 0; i < 4; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+
+// Update your existing processBooking function to use the random ID
+function processBooking() {
+    bookingData.guestName = document.getElementById('fname').value + ' ' + document.getElementById('lname').value;
+    
+    const btn = event.target;
+    btn.innerText = "Booking...";
+    
+    // Generate the ID right now
+    const newID = generateBookingID();
+    document.getElementById('res-id').innerText = newID;
+
+    setTimeout(() => {
+        showView('view-success', 2);
+    }, 1500);
+}
 </script>
 
 </body>
 
 </html>
+
 
 
 
