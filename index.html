@@ -148,7 +148,20 @@ footer {
 
     <div id="view-reserve" class="card active">
         <h2>Make a Reservation</h2>
-        <div class="form-row">
+        <div class="form-row" style="margin-bottom: 1rem;">
+    <div>
+        <label>Check-in Date</label>
+        <input type="date" id="checkin" onchange="calculateNights()">
+    </div>
+    <div>
+        <label>Check-out Date</label>
+        <input type="date" id="checkout" onchange="calculateNights()">
+    </div>
+</div>
+<div id="nights-display" style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+    Duration: 0 nights
+</div>
+        <!-- <div class="form-row">
             <div>
                 <label>Check-In</label>
                 <input type="date" id="book-in" value="">
@@ -157,7 +170,7 @@ footer {
                 <label>Check-Out</label>
                 <input type="date" id="book-out" value="">
             </div>
-        </div>
+        </div> -->
         <label>Room Type</label>
         <div class="room-grid">
             <div class="room-option" onclick="selectRoom(this, 'Superior King', 225)">
@@ -259,31 +272,82 @@ footer {
     </div>
 </footer>
 <script>
-    let bookingData = {
-        roomType: '',
-        pricePerNight: 0,
-        nights: 2,
-        total: 0,
-        guestName: ''
-    };
+let bookingData = {
+    roomType: '',
+    pricePerNight: 0,
+    nights: 0,
+    total: 0,
+    guestName: ''
+};
 
-    function showView(id, step) {
-        document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        
-        if(step) {
-            document.querySelectorAll('.p-step').forEach(s => s.classList.remove('active'));
-            document.getElementById(`step-dot-${step}`).classList.add('active');
+function calculateNights() {
+    const checkinVal = document.getElementById('checkin').value;
+    const checkoutVal = document.getElementById('checkout').value;
+
+    if (checkinVal && checkoutVal) {
+        const start = new Date(checkinVal);
+        const end = new Date(checkoutVal);
+
+        // Calculate difference in milliseconds and convert to days
+        const diffInTime = end.getTime() - start.getTime();
+        const diffInDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
+
+        if (diffInDays > 0) {
+            bookingData.nights = diffInDays;
+            document.getElementById('nights-display').innerText = `Duration: ${diffInDays} nights`;
+            
+            // Update total if a room is already selected
+            if (bookingData.pricePerNight > 0) {
+                bookingData.total = bookingData.pricePerNight * bookingData.nights;
+            }
+        } else {
+            alert("Check-out date must be after check-in date.");
+            document.getElementById('checkout').value = '';
+            bookingData.nights = 0;
         }
     }
+}
 
-    function selectRoom(el, type, price) {
-        document.querySelectorAll('.room-option').forEach(r => r.classList.remove('selected'));
-        el.classList.add('selected');
-        bookingData.roomType = type;
-        bookingData.pricePerNight = price;
+// Update your selectRoom function to trigger the calculation
+function selectRoom(el, type, price) {
+    document.querySelectorAll('.room-option').forEach(r => r.classList.remove('selected'));
+    el.classList.add('selected');
+    bookingData.roomType = type;
+    bookingData.pricePerNight = price;
+    
+    // Recalculate total immediately upon selection
+    if (bookingData.nights > 0) {
         bookingData.total = price * bookingData.nights;
+    } else {
+        alert("Please select your dates first to see the total price.");
     }
+}
+    
+    // let bookingData = {
+    //     roomType: '',
+    //     pricePerNight: 0,
+    //     nights: 2,
+    //     total: 0,
+    //     guestName: ''
+    // };
+
+    // function showView(id, step) {
+    //     document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    //     document.getElementById(id).classList.add('active');
+        
+    //     if(step) {
+    //         document.querySelectorAll('.p-step').forEach(s => s.classList.remove('active'));
+    //         document.getElementById(`step-dot-${step}`).classList.add('active');
+    //     }
+    // }
+
+    // function selectRoom(el, type, price) {
+    //     document.querySelectorAll('.room-option').forEach(r => r.classList.remove('selected'));
+    //     el.classList.add('selected');
+    //     bookingData.roomType = type;
+    //     bookingData.pricePerNight = price;
+    //     bookingData.total = price * bookingData.nights;
+    // }
 
     function goToGuestInfo() {
         if(!bookingData.roomType) return alert("Please select a room type.");
@@ -359,6 +423,7 @@ function processBooking() {
 </body>
 
 </html>
+
 
 
 
