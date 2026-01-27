@@ -4,141 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group AE Q(31) | Smart Reservation Portal</title>
-    <style>
-        :root {
-            --primary: #1a1a1a;
-            --accent: #b8926a;
-            --bg: #f9f9f9;
-            --white: #ffffff;
-            --success: #27ae60;
-            --border: #e1e1e1;
-        }
-
-        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--primary); }
-        
-        /* Navigation */
-        nav {
-            background: var(--white); padding: 1rem 2rem; display: flex; 
-            justify-content: space-between; align-items: center; 
-            border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100;
-        }
-        .logo { font-weight: 800; letter-spacing: 1px; }
-
-        .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-        .card { 
-            background: var(--white); padding: 2rem; border-radius: 16px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: none; 
-            animation: fadeIn 0.4s ease;
-        }
-        .card.active { display: block; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Step Indicators */
-        .progress-stepper { display: flex; justify-content: space-between; margin-bottom: 2rem; }
-        .p-step { font-size: 0.7rem; text-transform: uppercase; color: #aaa; font-weight: bold; border-bottom: 2px solid #eee; flex: 1; padding-bottom: 5px; text-align: center; }
-        .p-step.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-        /* Booking Specifics */
-        .room-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        .room-option { border: 1.5px solid var(--border); border-radius: 12px; overflow: hidden; transition: 0.3s; cursor: pointer; }
-        .room-option:hover { border-color: var(--accent); }
-        .room-option.selected { border-color: var(--accent); background: #fdfaf5; box-shadow: 0 0 0 2px var(--accent); }
-        .room-img { width: 100%; height: 150px; background: #eee; object-fit: cover; }
-        .room-info { padding: 1rem; }
-
-        /* Forms & Buttons */
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-        label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 600; color: #555; }
-        input, select { width: 100%; padding: 12px; border: 1.5px solid var(--border); border-radius: 8px; box-sizing: border-box; }
-        .btn { 
-            background: var(--primary); color: white; padding: 15px; border: none; 
-            border-radius: 8px; cursor: pointer; width: 100%; font-weight: 600; font-size: 1rem; 
-        }
-        .btn-secondary { background: #eee; color: #333; margin-top: 0.5rem; }
-        
-        /* Summary Table */
-        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-        td { padding: 10px 0; border-bottom: 1px solid #eee; }
-        .total { font-weight: 800; font-size: 1.2rem; color: var(--accent); }
-
-        /* Responsive adjustments */
-@media (max-width: 600px) {
-    .form-row { grid-template-columns: 1fr; } /* Stack inputs on mobile */
-    nav { padding: 1rem; }
-    .logo { font-size: 0.9rem; }
-    .card { padding: 1.5rem; margin: 1rem; }
-}
-
-/* Footer Styling */
-footer {
-    background: var(--primary);
-    color: var(--white);
-    padding: 3rem 1rem 1.5rem;
-    margin-top: 4rem;
-}
-
-.footer-content {
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-}
-
-.footer-section h4 {
-    color: var(--accent);
-    margin-bottom: 1.2rem;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-
-.footer-section p, .footer-section a {
-    color: #aaa;
-    text-decoration: none;
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-.footer-bottom {
-    max-width: 900px;
-    margin: 2rem auto 0;
-    padding-top: 1.5rem;
-    border-top: 1px solid #333;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #666;
-}
-
-        .hero-image {
-    width: 100%;
-    height: 300px; 
-    object-fit: cover; /* Crops the image to fill the area instead of stretching it */
-}
-
-        .container img {
-    max-width: 100%;
-    height: auto;
-    display: block; /* Removes the small gap at the bottom of images */
-    margin: 0 auto; /* Centers the image if it's smaller than the container */
-    border-radius: 12px; /* Optional: matches your card styling */
-}
-    </style>
+    <link rel="stylesheet" href="style.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
 <nav>
-    <div class="logo"><i class="fa fa-Home"></i> GROUP AE Q(31)</div>
-    <div id="user-context"><i class="fa fa-book"></i> <a href="#view-reserve" style="text-decoration:none; font-weight:bold; color:black;">New Reservation</a></div>
+    <div class="logo"><i class="fa-Home"></i> GROUP AE Q(31)</div>
+    <div id="user-context"><i class="fa fa-book"></i> <a href="#reservation" style="text-decoration:none; font-weight:bold; color:black;">New Reservation</a></div>
 </nav>
 
 <div class="container">
     <img src="Chinge.png" class="hero-image" alt="Group AE Resort Hero Image">
 </div>
 
-<div class="container">
+<div class="container" id="reservation">
     <div class="progress-stepper">
         <div id="step-dot-1" class="p-step active">1. Search</div>
         <div id="step-dot-2" class="p-step">2. Book</div>
@@ -161,30 +41,21 @@ footer {
 <div id="nights-display" style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
     Duration: 0 nights
 </div>
-        <!-- <div class="form-row">
-            <div>
-                <label>Check-In</label>
-                <input type="date" id="book-in" value="">
-            </div>
-            <div>
-                <label>Check-Out</label>
-                <input type="date" id="book-out" value="">
-            </div>
-        </div> -->
+    
         <label>Room Type</label>
         <div class="room-grid">
-            <div class="room-option" onclick="selectRoom(this, 'Superior King', 225)">
+            <div class="room-option" onclick="selectRoom(this, 'Superior King', 22500)">
                 <div class="room-img" style="background: url('https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=300&q=80') center/cover;"></div>
                 <div class="room-info">
                     <strong>Superior King</strong><br>
-                    <small>#225 / night</small>
+                    <small>#22500 / night</small>
                 </div>
             </div>
-            <div class="room-option" onclick="selectRoom(this, 'Deluxe Suite', 450)">
+            <div class="room-option" onclick="selectRoom(this, 'Deluxe Suite', 45000)">
                 <div class="room-img" style="background: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=300&q=80') center/cover;"></div>
                 <div class="room-info">
                     <strong>Deluxe Suite</strong><br>
-                    <small>#450 / night</small>
+                    <small>#45000 / night</small>
                 </div>
             </div>
         </div>
@@ -211,7 +82,7 @@ footer {
         </div>
         <div style="background: #fdfaf5; padding: 1rem; border-radius: 8px; margin: 1rem 0; border: 1px solid var(--accent);">
             <strong>Summary:</strong> <span id="summary-text">Superior King x 2 Nights</span>
-            <div class="total" id="summary-price">#450.00</div>
+            <div class="total" id="summary-price">#45000.00</div>
         </div>
         <button class="btn" onclick="processBooking()">Confirm Reservation</button>
     </div>
@@ -271,122 +142,132 @@ footer {
         &copy; 2026 Group AE Q(31) Smart Reservation Portal. All rights reserved.
     </div>
 </footer>
-<script>
-let bookingData = {
-    roomType: '',
-    pricePerNight: 0,
-    nights: 0,
-    total: 0,
-    guestName: ''
-};
+    <script>
+    let bookingData = {
+        roomType: '',
+        pricePerNight: 0,
+        nights: 0,
+        total: 0,
+        guestName: ''
+    };
 
-function calculateNights() {
-    const checkinVal = document.getElementById('checkin').value;
-    const checkoutVal = document.getElementById('checkout').value;
+    function showView(id, step) {
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        const el = document.getElementById(id);
+        if (el) el.classList.add('active');
 
-    if (checkinVal && checkoutVal) {
-        const start = new Date(checkinVal);
-        const end = new Date(checkoutVal);
-
-        // Calculate difference in milliseconds and convert to days
-        const diffInTime = end.getTime() - start.getTime();
-        const diffInDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
-
-        if (diffInDays > 0) {
-            bookingData.nights = diffInDays;
-            document.getElementById('nights-display').innerText = `Duration: ${diffInDays} nights`;
-            
-            // Update total if a room is already selected
-            if (bookingData.pricePerNight > 0) {
-                bookingData.total = bookingData.pricePerNight * bookingData.nights;
-            }
-        } else {
-            alert("Check-out date must be after check-in date.");
-            document.getElementById('checkout').value = '';
-            bookingData.nights = 0;
+        if (step) {
+            document.querySelectorAll('.p-step').forEach(s => s.classList.remove('active'));
+            const dot = document.getElementById(`step-dot-${step}`);
+            if (dot) dot.classList.add('active');
         }
     }
-}
 
-// Update your selectRoom function to trigger the calculation
-function selectRoom(el, type, price) {
-    document.querySelectorAll('.room-option').forEach(r => r.classList.remove('selected'));
-    el.classList.add('selected');
-    bookingData.roomType = type;
-    bookingData.pricePerNight = price;
-    
-    // Recalculate total immediately upon selection
-    if (bookingData.nights > 0) {
-        bookingData.total = price * bookingData.nights;
-    } else {
-        alert("Please select your dates first to see the total price.");
+    function calculateNights() {
+        const checkinVal = document.getElementById('checkin').value;
+        const checkoutVal = document.getElementById('checkout').value;
+
+        if (checkinVal && checkoutVal) {
+            const start = new Date(checkinVal);
+            const end = new Date(checkoutVal);
+
+            // Calculate difference in milliseconds and convert to days
+            const diffInTime = end.getTime() - start.getTime();
+            const diffInDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
+
+            if (diffInDays > 0) {
+                bookingData.nights = diffInDays;
+                document.getElementById('nights-display').innerText = `Duration: ${diffInDays} nights`;
+
+                // Update total if a room is already selected
+                if (bookingData.pricePerNight > 0) {
+                    bookingData.total = bookingData.pricePerNight * bookingData.nights;
+                } else {
+                    bookingData.total = 0;
+                }
+
+                // Update visible summary if present
+                if (bookingData.roomType) {
+                    document.getElementById('summary-text').innerText = `${bookingData.roomType} (${bookingData.nights} Nights)`;
+                    document.getElementById('summary-price').innerText = `#${bookingData.total.toFixed(2)}`;
+                }
+            } else {
+                alert("Check-out date must be after check-in date.");
+                document.getElementById('checkout').value = '';
+                bookingData.nights = 0;
+                bookingData.total = 0;
+                document.getElementById('nights-display').innerText = `Duration: 0 nights`;
+                document.getElementById('summary-price').innerText = `#0.00`;
+            }
+        }
     }
-}
-    
-    // let bookingData = {
-    //     roomType: '',
-    //     pricePerNight: 0,
-    //     nights: 2,
-    //     total: 0,
-    //     guestName: ''
-    // };
 
-    // function showView(id, step) {
-    //     document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-    //     document.getElementById(id).classList.add('active');
-        
-    //     if(step) {
-    //         document.querySelectorAll('.p-step').forEach(s => s.classList.remove('active'));
-    //         document.getElementById(`step-dot-${step}`).classList.add('active');
-    //     }
-    // }
+    function selectRoom(el, type, price) {
+        document.querySelectorAll('.room-option').forEach(r => r.classList.remove('selected'));
+        el.classList.add('selected');
+        bookingData.roomType = type;
+        bookingData.pricePerNight = price;
 
-    // function selectRoom(el, type, price) {
-    //     document.querySelectorAll('.room-option').forEach(r => r.classList.remove('selected'));
-    //     el.classList.add('selected');
-    //     bookingData.roomType = type;
-    //     bookingData.pricePerNight = price;
-    //     bookingData.total = price * bookingData.nights;
-    // }
+        // Recalculate total immediately upon selection
+        bookingData.total = bookingData.nights > 0 ? price * bookingData.nights : 0;
+
+        // Update visible summary
+        document.getElementById('summary-text').innerText = `${bookingData.roomType} (${bookingData.nights} Nights)`;
+        document.getElementById('summary-price').innerText = `#${bookingData.total.toFixed(2)}`;
+    }
 
     function goToGuestInfo() {
-        if(!bookingData.roomType) return alert("Please select a room type.");
+        if (!bookingData.roomType) return alert("Please select a room type.");
+        if (bookingData.nights <= 0) return alert("Please select check-in and check-out dates.");
+
         document.getElementById('summary-text').innerText = `${bookingData.roomType} (${bookingData.nights} Nights)`;
-        document.getElementById('summary-price').innerText = `$${bookingData.total.toFixed(2)}`;
+        document.getElementById('summary-price').innerText = `#${bookingData.total.toFixed(2)}`;
         showView('view-guest', 2);
     }
 
-    function processBooking() {
-        bookingData.guestName = document.getElementById('fname').value + ' ' + document.getElementById('lname').value;
-        const btn = event.target;
-        btn.innerText = "Booking...";
+    function processBooking(event) {
+        bookingData.guestName = (document.getElementById('fname').value || '').trim() + ' ' + (document.getElementById('lname').value || '').trim();
+        const btn = event && event.target ? event.target : null;
+        if (btn) btn.innerText = "Booking...";
+
+        // Generate the ID right now
+        const newID = generateBookingID();
+        document.getElementById('res-id').innerText = newID;
+
         setTimeout(() => {
             showView('view-success', 2);
+            if (btn) btn.innerText = "Confirm Reservation";
         }, 1500);
     }
-// Function to generate and display a random room number
-function assignRandomRoom() {
-    const min = 100;
-    const max = 999;
-    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    
-    // Update the HTML element
-    document.getElementById('room-display').innerText = randomNumber;
-}
 
-// Call the function when the page finished loading
-window.onload = assignRandomRoom;
+    // Function to generate and display a random room number
+    function assignRandomRoom() {
+        const min = 100;
+        const max = 999;
+        const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        // Update the HTML element
+        document.getElementById('room-display').innerText = randomNumber;
+    }
+
+    // Call the function when the page finished loading
+    window.onload = function() {
+        assignRandomRoom();
+        document.getElementById('summary-price').innerText = `#${bookingData.total.toFixed(2)}`;
+    };
+
     function startCheckIn() {
         showView('view-portal', 3);
     }
 
     function showCheckout() {
         const billBody = document.getElementById('bill-items');
+        const amenities = 12.50;
         billBody.innerHTML = `
-            <tr><td>${bookingData.roomType} (Stay)</td><td>$${bookingData.total.toFixed(2)}</td></tr>
-            <tr><td>Amenities Tax</td><td>#12.50</td></tr>
-            <tr class="total"><td>Total Amount</td><td>$${(bookingData.total + 12.50).toFixed(2)}</td></tr>
-        `;
+                <tr><td>${bookingData.roomType} (Stay)</td><td>#${bookingData.total.toFixed(2)}</td></tr>
+                <tr><td>Amenities Tax</td><td>#${amenities.toFixed(2)}</td></tr>
+                <tr class="total"><td>Total Amount</td><td>#${(bookingData.total + amenities).toFixed(2)}</td></tr>
+            `;
         showView('view-checkout', 4);
     }
 
@@ -395,47 +276,15 @@ window.onload = assignRandomRoom;
     }
 
     function generateBookingID() {
-    const characters = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789'; // Excluded 'O' and '0' for clarity
-    let result = 'LS-';
-    for (let i = 0; i < 4; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
+        const characters = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789'; // Excluded 'O' and '0' for clarity
+        let result = 'LS-';
+        for (let i = 0; i < 4; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return result;
     }
-    return result;
-}
-
-// Update your existing processBooking function to use the random ID
-function processBooking() {
-    bookingData.guestName = document.getElementById('fname').value + ' ' + document.getElementById('lname').value;
-    
-    const btn = event.target;
-    btn.innerText = "Booking...";
-    
-    // Generate the ID right now
-    const newID = generateBookingID();
-    document.getElementById('res-id').innerText = newID;
-
-    setTimeout(() => {
-        showView('view-success', 2);
-    }, 1500);
-}
-</script>
+    </script>
 
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
