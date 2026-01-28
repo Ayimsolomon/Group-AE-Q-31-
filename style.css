@@ -131,7 +131,40 @@ button {
         }
         button:hover { background: #0056b3; }
 
-table {
+.table-container {
+        width: 100%;
+        overflow-x: auto; /* Allows horizontal scroll on mobile */
+        margin-top: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px; /* Ensures the table doesn't get too squashed */
+    }
+
+    th {
+        background-color: #1a3a5f;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        white-space: nowrap; /* Prevents text wrapping in headers */
+    }
+
+    td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    
+    /* Responsive adjustment for very small text if needed */
+    @media screen and (max-width: 480px) {
+        td, th { font-size: 14px; padding: 8px; }
+    }
+
+/* table {
         width: 100%;
         border-collapse: collapse;
         font-family: Arial, sans-serif;
@@ -157,7 +190,8 @@ table {
     .title {
         text-align: center;
         color: #1a3a5f;
-    }
+    } */
+
 
 
 
