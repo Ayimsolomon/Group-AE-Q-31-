@@ -117,3 +117,10 @@ footer {
     margin: 0 auto; /* Centers the image if it's smaller than the container */
     border-radius: 12px; /* Optional: matches your card styling */
 }
+#bookingSection {
+            display: none; /* This makes it invisible by default */
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 2px solid #007bff;
+        }
+.header-info { text-align: center; border-bottom: 1px solid #eee; margin-bottom: 20px; }
