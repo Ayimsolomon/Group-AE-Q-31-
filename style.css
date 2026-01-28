@@ -136,6 +136,7 @@ table {
         border-collapse: collapse;
         font-family: Arial, sans-serif;
         margin-top: 20px;
+    object-fit: cover;
     }
     th {
         background-color: #1a3a5f;
@@ -157,5 +158,6 @@ table {
         text-align: center;
         color: #1a3a5f;
     }
+
 
 
