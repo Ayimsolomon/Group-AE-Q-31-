@@ -119,6 +119,19 @@
         <p>A receipt has been sent to your email.</p>
         <button class="btn btn-secondary" onclick="location.reload()">New Booking</button>
     </div>
+
+    <button onclick="showBookingForm()">Click to Book a Hotel Room</button>
+
+    <div id="bookingSection">
+    <div class="header-info">
+        <h2>KASU School of Continuing Education</h2>
+        <p><strong>CSC Department | IFSCE208</strong></p>
+        <p>Group AE Assignment - Question 31</p>
+    </div>
+
+    <hr style="margin-top: 30px;">
+    <small><strong>Group Members:</strong> Ishaku Simon, Ibe Chukwuka Kingsley, Ike Blessing, and others.</small>
+</div>
 </div>
 <footer>
     <div class="footer-content">
@@ -143,6 +156,17 @@
     </div>
 </footer>
     <script>
+        function showBookingForm() {
+        // Get the hidden div by its ID
+        var x = document.getElementById("bookingSection");
+        
+        // Change the display style to block to make it visible
+        if (x.style.display === "none" || x.style.display === "") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none"; // This allows it to toggle back and forth
+        }
+    }
     let bookingData = {
         roomType: '',
         pricePerNight: 0,
@@ -288,3 +312,4 @@
 </body>
 
 </html>
+
