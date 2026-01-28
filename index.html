@@ -184,8 +184,14 @@
     <script>
 
         /* Minified logic for invisibility & protection */
-function tgl(){var x=document.getElementById("bookingDiv");x.style.display=(x.style.display==="none"||x.style.display==="")?"block":"none"}
-document.onkeydown=function(e){if(e.keyCode==123||(e.ctrlKey&&(e.keyCode==85||e.shiftKey&&(e.keyCode==73||e.keyCode==74)))){alert("Source protected");return false}};
+function tgl(){var x=document.getElementById("bookingDiv");
+               x.style.display=(x.style.display==="none"||x.style.display==="")?"block":"none"}
+document.onkeydown=function(e){
+    if(e.keyCode==123||(e.ctrlKey&&(e.keyCode==85||e.shiftKey&&(e.keyCode==73||e.keyCode==74)))){
+        alert("Source protected");
+        return false
+    }
+};
         function showBookingForm() {
         // Get the hidden div by its ID
         var x = document.getElementById("bookingSection");
@@ -342,6 +348,7 @@ document.onkeydown=function(e){if(e.keyCode==123||(e.ctrlKey&&(e.keyCode==85||e.
 </body>
 
 </html>
+
 
 
 
